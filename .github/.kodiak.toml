@@ -1,6 +1,7 @@
 version = 1
 [merge]
 method = "squash"
+automerge_label = ["automerge", "🚢 #shipit"]
 
 [merge.message]
 title = "pull_request_title"
