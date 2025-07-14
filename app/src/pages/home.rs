@@ -71,7 +71,7 @@ fn Scroll() -> impl IntoView {
 
     view! {
         <For each=move || data.get()
-            key=|state| state.clone()
+            key=|state| *state
             let(_child)
         >
             <div class="w-full margin-2 bg-primary-200">

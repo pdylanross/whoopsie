@@ -101,7 +101,7 @@ impl SeaOrmConnectOptions for SqliteConnectOptions {
         }
 
         if let Some(file_path) = self.file_path.as_ref() {
-            return format!("sqlite:/{}?mode=rwc", file_path);
+            return format!("sqlite:/{file_path}?mode=rwc");
         }
 
         panic!("Invalid SqliteConnectOptions, should be validated pre this code path");

@@ -16,7 +16,6 @@ use crate::extensions::MappingExt;
 use crate::fileserv::file_and_error_handler;
 use crate::monitor::MonitorController;
 use crate::signal::{ExitSignal, ExitSignaler};
-use app::config::AppConfig;
 use app::state::ServerState;
 use app::{shell, App};
 use axum::Router;
@@ -52,21 +51,20 @@ async fn main() -> anyhow::Result<()> {
     let http = tokio::spawn(listen_and_serve(addr, app, exit_signaler.new_exit_signal()));
 
     match try_join!(http, monitoring, exit_signaler.wait_for_shutdown()) {
-        Ok(res) => match res {
-            (http_res, monitoring_res, exit_res) => {
-                let vec = [http_res, monitoring_res, exit_res];
-                let errs = vec.into_iter().filter_map(|r| r.err()).collect::<Vec<_>>();
+        Ok(res) => {
+            let (http_res, monitoring_res, exit_res) = res;
+            let vec = [http_res, monitoring_res, exit_res];
+            let errs = vec.into_iter().filter_map(|r| r.err()).collect::<Vec<_>>();
 
-                if errs.is_empty() {
-                    Ok(())
-                } else {
-                    Err(anyhow::anyhow!(
-                        "Errors occurred during shutdown: {:?}",
-                        errs
-                    ))
-                }
+            if errs.is_empty() {
+                Ok(())
+            } else {
+                Err(anyhow::anyhow!(
+                    "Errors occurred during shutdown: {:?}",
+                    errs
+                ))
             }
-        },
+        }
         Err(err) => Err(err.into()),
     }
 }
@@ -108,7 +106,7 @@ async fn build_server_state(scfg: ServerConfig) -> Result<ServerState, anyhow::E
 
     Ok(ServerState {
         leptos_options: conf.leptos_options,
-        app_config: scfg.app_config.unwrap_or(AppConfig::default()),
+        app_config: scfg.app_config.unwrap_or_default(),
         db_factory,
         global_config,
     })

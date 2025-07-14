@@ -5,7 +5,7 @@ pub fn combine_optional_class(
     match optional_classes {
         None => base_classes.to_string(),
         Some(class) => {
-            format!("{} {}", base_classes, class)
+            format!("{base_classes} {class}")
         }
     }
 }

@@ -17,8 +17,8 @@ use std::path::Path;
 use std::time::Duration;
 use std::{env, fs};
 
-const CONFIG_DIR_ENV_VAR: &'static str = "CONFIG_DIR";
-const ENV_PREFIX: &'static str = "WHOOPS";
+const CONFIG_DIR_ENV_VAR: &str = "CONFIG_DIR";
+const ENV_PREFIX: &str = "WHOOPS";
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct ServerConfig {
@@ -52,16 +52,12 @@ impl MappingExt<MonitorConfiguration> for MonitorGeneralConfig {
 
 impl MappingExt<Option<MonitorConfiguration>> for Option<MonitorGeneralConfig> {
     fn object_map(self) -> Option<MonitorConfiguration> {
-        if let Some(config) = self {
-            Some(config.object_map())
-        } else {
-            None
-        }
+        self.map(|config| config.object_map())
     }
 }
 
 impl ServerConfig {
-    pub fn set_source_file(&mut self, path: &Cow<str>) {
+    pub fn set_source_file(&mut self, path: Cow<str>) {
         if let Some(monitors) = self.monitors.as_mut() {
             for m in monitors {
                 m.source_file = path.to_string();
@@ -91,6 +87,7 @@ impl ServerConfig {
     }
 }
 
+#[allow(clippy::result_large_err)]
 pub fn load_config() -> Result<ServerConfig, ConfigError> {
     let config = load_config_from_dir(CONFIG_DIR_ENV_VAR, Some(ENV_PREFIX))?;
 
@@ -125,6 +122,7 @@ pub enum ConfigError {
     FigmentError(#[from] FigmentError),
 }
 
+#[allow(clippy::result_large_err)]
 fn load_config_from_dir(
     config_dir_env_var: &str,
     env_prefix: Option<&str>,
@@ -140,15 +138,13 @@ fn load_config_from_dir(
     if !config_path.exists() {
         return Err(ConfigError::DirectoryNotExists {
             path: config_dir.clone(),
-        }
-        .into());
+        });
     }
 
     if !config_path.is_dir() {
         return Err(ConfigError::NotADirectory {
             path: config_dir.clone(),
-        }
-        .into());
+        });
     }
 
     // Read directory and collect YAML files
@@ -178,8 +174,7 @@ fn load_config_from_dir(
     if yaml_files.is_empty() {
         return Err(ConfigError::NoYamlFiles {
             path: config_dir.clone(),
-        }
-        .into());
+        });
     }
 
     // Sort files alphanumerically for consistent loading order
@@ -195,7 +190,7 @@ fn load_config_from_dir(
             .merge(YamlExtended::file(&yaml_file))
             .extract()?;
 
-        new_config.set_source_file(&yaml_file.to_string_lossy());
+        new_config.set_source_file(yaml_file.to_string_lossy());
 
         ret.merge(new_config);
     }

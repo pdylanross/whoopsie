@@ -25,7 +25,7 @@ pub async fn monitor_task(
     let task = task_factory.construct_task(&monitor).await;
 
     if let Err(e) = task {
-        log::error!("error constructing task: {}", e);
+        log::error!("error constructing task: {e}");
         let monitor_repo = db.get_monitor_repository();
         let now = Utc::now();
         let status = MonitorStatus::Down {
@@ -79,7 +79,7 @@ async fn monitor_task_fn(
         let log_result = monitor_repo.log_status(monitor.name.clone(), status).await;
 
         if let Err(e) = log_result {
-            log::error!("error logging monitor status: {}", e);
+            log::error!("error logging monitor status: {e}");
         }
 
         select! {
