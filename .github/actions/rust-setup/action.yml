@@ -1,0 +1,19 @@
+name: Setup Rust Environment
+description: Sets up the rust build environment
+inputs:
+  cache:
+    description: "If the rust cache is enabled"
+    required: false
+    default: "true"
+runs:
+  using: composite
+  steps:
+    - uses: Swatinem/rust-cache@v2
+      if: ${{ inputs.cache == 'true' }}
+    - uses: dtolnay/rust-toolchain@stable
+      with:
+        toolchain: nightly
+        target: wasm32-unknown-unknown,
+        components: clippy,rustfmt
+    - name: Install binstall
+      uses: cargo-bins/cargo-binstall@main

@@ -59,7 +59,7 @@ pub fn MonitorDetail(
             Some(st) => {
                 match st {
                     MonitorStatus::Up { .. } => "up".into(),
-                    MonitorStatus::Down { error_reason,.. } => format!("down: {}", error_reason),
+                    MonitorStatus::Down { error_reason,.. } => format!("down: {error_reason}"),
                     MonitorStatus::Unknown => "unknown".into(),
                 }
             },
@@ -90,7 +90,7 @@ pub fn MonitorStatusLight(status_fn: impl Fn() -> Option<MonitorStatus>) -> impl
         },
     }
 
-    let classes = format!("{} {} {}", base_classes, background, text_color);
+    let classes = format!("{base_classes} {background} {text_color}");
 
     view! {
         <div class=classes>{status_message}</div>

@@ -40,13 +40,9 @@ impl MappingExtraField1Ext<Monitor, Vec<monitor_status::Model>> for monitor::Mod
         let api_version = self.api_version;
         let kind = self.kind;
 
-        let configuration = if let Some(interval) = self.check_interval {
-            Some(MonitorConfiguration {
-                check_interval: Some(std::time::Duration::from_secs_f32(interval)),
-            })
-        } else {
-            None
-        };
+        let configuration = self.check_interval.map(|interval| MonitorConfiguration {
+            check_interval: Some(std::time::Duration::from_secs_f32(interval)),
+        });
 
         Monitor {
             name: self.id,
