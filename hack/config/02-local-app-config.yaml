@@ -1,0 +1,23 @@
+app_config: { }
+monitors:
+  - apiVersion: v1alpha1
+    kind: endpoint
+    name: bad-endpoint-test
+    monitor_config:
+      check_interval: 15s
+    spec:
+      uri: http://not-something-that-exists.onmy.localdomain
+  - apiVersion: v1alpha1
+    kind: endpoint
+    name: whatismyip
+    monitor_config:
+      check_interval: 15s
+    spec:
+      uri: https://whatismyip.com
+  - apiVersion: v1alpha1
+    kind: endpoint
+    name: github
+    monitor_config:
+      check_interval: 1s
+    spec:
+      uri: https://github.com

@@ -1,0 +1,8 @@
+monitors:
+  - apiVersion: v1alpha1
+    kind: endpoint
+    name: google-test
+    common:
+      interval: 15s
+    spec:
+      uri: https://google.com

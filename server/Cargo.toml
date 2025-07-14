@@ -1,0 +1,33 @@
+[package]
+name = "server"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+app = { path = "../app", default-features = false, features = ["ssr"] }
+migration = { path = "../migration" }
+entities = { path = "../entities" }
+leptos = { workspace = true, features = ["ssr"] }
+leptos_axum.workspace = true
+
+axum = { workspace = true, features = ["macros"] }
+simple_logger.workspace = true
+tokio.workspace = true
+tower.workspace = true
+tower-http.workspace = true
+log.workspace = true
+tracing.workspace = true
+sea-orm = { workspace = true, features = ["sqlx-sqlite", "sqlx-postgres", "runtime-tokio-rustls", "with-chrono", "with-uuid"] }
+figment = { workspace = true, features = ["yaml", "env"] }
+serde = { workspace = true, features = ["derive"] }
+anyhow = { workspace = true, features = ["backtrace"] }
+thiserror.workspace = true
+tempfile.workspace = true
+dotenvy.workspace = true
+serde_yaml.workspace = true
+futures.workspace = true
+serde_json.workspace = true
+reqwest = { version = "0.12.22", features = ["gzip", "json"] }
+humantime-serde.workspace = true

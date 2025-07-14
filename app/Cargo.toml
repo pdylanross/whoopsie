@@ -1,0 +1,36 @@
+[package]
+name = "app"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+leptos.workspace = true
+leptos_meta.workspace = true
+leptos_router.workspace = true
+leptos_axum = { workspace = true, optional = true }
+axum = { workspace = true, features = ["macros"], optional = true }
+
+http.workspace = true
+cfg-if.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tracing-subscriber = { workspace = true, features = ["json", "env-filter", "local-time"] }
+tracing-wasm.workspace = true
+console_error_panic_hook.workspace = true
+wasm-bindgen.workspace = true
+serde = { workspace = true, features = ["derive"] }
+async-trait = "0.1.88"
+macros = { path = "../macros" }
+chrono = { workspace = true, features = ["serde"] }
+anyhow.workspace = true
+serde_json.workspace = true
+humantime-serde.workspace = true
+
+
+[features]
+default = []
+hydrate = ["leptos/hydrate"]
+ssr = ["leptos/ssr", "leptos_meta/ssr", "leptos_router/ssr", "dep:leptos_axum", "dep:axum"]
+

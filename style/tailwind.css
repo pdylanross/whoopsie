@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary-50: #f3fcef;
+    --color-primary-100: #e8f9e0;
+    --color-primary-200: #cff3be;
+    --color-primary-300: #9ad87b;
+    --color-primary-400: #7ed64a;
+    --color-primary-500: #65c021;
+    --color-primary-600: #509f12;
+    --color-primary-700: #427c1b;
+    --color-primary-800: #356219;
+    --color-primary-900: #315020;
+    --color-primary-950: #162c0a;
+
+    --color-secondary-50: #f4f4fe;
+    --color-secondary-100: #eaeafc;
+    --color-secondary-200: #d9d8fc;
+    --color-secondary-300: #bebbff;
+    --color-secondary-400: #988efb;
+    --color-secondary-500: #7d63f9;
+    --color-secondary-600: #6d44f0;
+    --color-secondary-700: #5f36d8;
+    --color-secondary-800: #4f2bb7;
+    --color-secondary-900: #402b8f;
+    --color-secondary-950: #291762;
+
+    --color-accent-50: #fff1f8;
+    --color-accent-100: #fde6f2;
+    --color-accent-200: #fecde7;
+    --color-accent-300: #ffa1d5;
+    --color-accent-400: #fc60c0;
+    --color-accent-500: #f42ab1;
+    --color-accent-600: #df009e;
+    --color-accent-700: #be0086;
+    --color-accent-800: #9e006f;
+    --color-accent-900: #7f155b;
+    --color-accent-950: #4f0036;
+
+    --color-neutral-50: #fafafa;
+    --color-neutral-100: #f5f5f5;
+    --color-neutral-200: #e5e5e5;
+    --color-neutral-300: #d4d4d4;
+    --color-neutral-400: #a1a1a1;
+    --color-neutral-500: #737373;
+    --color-neutral-600: #525252;
+    --color-neutral-700: #404040;
+    --color-neutral-800: #262626;
+    --color-neutral-900: #171717;
+    --color-neutral-950: #0a0a0a;
+
+    --font-heading: "Noto Sans Meroitic", sans-serif;
+    --font-body: "Carrois Gothic", sans-serif;
+
+    --radius: 0.25rem;
+}
+
+@layer base {
+    html {
+        font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    body {
+        @apply bg-white dark:bg-gray-800 text-gray-900 dark:text-white antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-semibold;
+    }
+
+    h1 {
+        @apply text-3xl lg:text-4xl;
+    }
+
+    h2 {
+        @apply text-2xl lg:text-3xl;
+    }
+
+    h3 {
+        @apply text-xl lg:text-2xl;
+    }
+}
+
+@utility btn {
+    @apply inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200;
+}
+
+@utility input {
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500;
+}
+
+@utility badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+@utility border-color {
+    @apply border-gray-100 dark:border-gray-600;
+}
+
+/* Custom component styles */
+@layer components {
+    .btn-primary {
+        @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+    }
+
+    .btn-secondary {
+        @apply btn bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500;
+    }
+
+    .btn-outline {
+        @apply btn bg-transparent border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-primary-500;
+    }
+
+    .card {
+        @apply bg-primary-100 text-gray-900 dark:text-white dark:bg-primary-800 rounded-lg shadow-md p-6 border border-color;
+    }
+
+    .card-header {
+        @apply border-b border-gray-200 pb-4 mb-4;
+    }
+
+    .input-error {
+        @apply input border-red-300 focus:ring-red-500 focus:border-red-500;
+    }
+
+    .badge-primary {
+        @apply badge bg-primary-100 text-primary-800;
+    }
+
+    .badge-success {
+        @apply badge bg-green-100 text-green-800;
+    }
+
+    .badge-warning {
+        @apply badge bg-yellow-100 text-yellow-800;
+    }
+
+    .badge-error {
+        @apply badge bg-red-100 text-red-800;
+    }
+}
+
+/* Custom utility classes */
+@layer utilities {
+    .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.10);
+    }
+
+    .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .glass {
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .glass-dark {
+        backdrop-filter: blur(10px);
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+}
