@@ -1,0 +1,12 @@
+name: Setup Rust Environment
+description: Sets up the rust build environment
+runs:
+  using: composite
+  steps:
+    - uses: dtolnay/rust-toolchain@stable
+      with:
+        toolchain: nightly
+        target: wasm32-unknown-unknown,
+        components: clippy,rustfmt
+    - name: Install binstall
+      uses: cargo-bins/cargo-binstall@main
