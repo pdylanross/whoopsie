@@ -243,7 +243,7 @@ mod tests {
         env::set_var("TEST_CONFIG_DIR", config_dir.to_str().unwrap());
 
         // Load configuration
-        let figment = load_config_from_dir("TEST_CONFIG_DIR", Some("TEST")).unwrap();
+        let _figment = load_config_from_dir("TEST_CONFIG_DIR", Some("TEST")).unwrap();
 
         // The figment should be ready to extract configuration
         // In a real application, you would extract into your config struct here
