@@ -2,6 +2,7 @@ use crate::components::util::combine_optional_class;
 use crate::types::{get_monitor, Monitor, MonitorStatus};
 use leptos::leptos_dom::warn;
 use leptos::prelude::*;
+use leptos_icons::Icon;
 use std::time::Duration;
 
 #[component]
@@ -70,29 +71,30 @@ pub fn MonitorDetail(
 
 #[component]
 pub fn MonitorStatusLight(status_fn: impl Fn() -> Option<MonitorStatus>) -> impl IntoView {
-    let base_classes = "justify-center text-center align-middle text-xs w-full h-full rounded-full";
-    let mut background = "bg-gray-500";
-    let text_color = "text-white";
-    let mut status_message = "Unknown";
+    let base_classes = "items-center flex flex-row justify-end";
+    let mut text_color = "text-gray-200";
+    let mut status_icon = icondata::FaCircleQuestionSolid;
 
     match status_fn() {
         None => {}
         Some(status) => match status {
             MonitorStatus::Up { .. } => {
-                background = "bg-green-500";
-                status_message = "Up";
+                status_icon = icondata::IoCheckmarkCircle;
+                text_color = "text-green-500";
             }
             MonitorStatus::Down { .. } => {
-                background = "bg-red-500";
-                status_message = "Down";
+                status_icon = icondata::BiErrorCircleSolid;
+                text_color = "text-red-500";
             }
             MonitorStatus::Unknown => {}
         },
     }
 
-    let classes = format!("{base_classes} {background} {text_color}");
+    let classes = format!("{base_classes} {text_color}");
 
     view! {
-        <div class=classes>{status_message}</div>
+        <div class=classes>
+            <Icon icon=status_icon />
+        </div>
     }
 }

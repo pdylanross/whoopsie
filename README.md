@@ -1,5 +1,5 @@
 <picture>
-    <image src="https://raw.githubusercontent.com/pdylanross/whoopsie/main/public/logo.png">
+    <image src="https://raw.githubusercontent.com/pdylanross/whoopsie/main/public/logo.png"></image>
 </picture>
 
 # Whoopsie
