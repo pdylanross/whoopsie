@@ -27,7 +27,7 @@ chrono = { workspace = true, features = ["serde"] }
 anyhow.workspace = true
 serde_json.workspace = true
 humantime-serde.workspace = true
-leptos_icons = "0.6.1"
+leptos_icons = "0.7.0"
 icondata = "0.6.0"
 
 
