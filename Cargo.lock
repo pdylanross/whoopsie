@@ -2289,9 +2289,9 @@ dependencies = [
 
 [[package]]
 name = "leptos_axum"
-version = "0.8.3"
+version = "0.8.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a84872a7df15ec047f8b27b27e35354752a8cc62ab8b789e3dc9d4ed5613bcea"
+checksum = "1e720f7b3cf828b4fbb96145716c9af8edccbeacfb8b808d28687f8a8f175800"
 dependencies = [
  "any_spawner",
  "axum",
@@ -2369,9 +2369,9 @@ dependencies = [
 
 [[package]]
 name = "leptos_integration_utils"
-version = "0.8.3"
+version = "0.8.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "51059fee81537ba299323e2b58c9d721f66fd8a2d42df710a020efbdfb8efae2"
+checksum = "ea02f77bee8de1e9dd4c7ef1c401dd3a1afef8dab6e240af6f7d6f73403a259f"
 dependencies = [
  "futures",
  "hydration_context",
@@ -2407,9 +2407,9 @@ dependencies = [
 
 [[package]]
 name = "leptos_meta"
-version = "0.8.3"
+version = "0.8.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ef0521aeb2e73cbae8e6278287da485020b971e0b2cd471c5de5eb8cbcaa8802"
+checksum = "2d489e38d3f541e9e43ecc2e3a815527840345a2afca629b3e23fcc1dd254578"
 dependencies = [
  "futures",
  "indexmap",
