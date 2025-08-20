@@ -21,7 +21,7 @@ tracing-wasm.workspace = true
 console_error_panic_hook.workspace = true
 wasm-bindgen.workspace = true
 serde = { workspace = true, features = ["derive"] }
-async-trait = "0.1.88"
+async-trait = "0.1.89"
 macros = { path = "../macros" }
 chrono = { workspace = true, features = ["serde"] }
 anyhow.workspace = true
