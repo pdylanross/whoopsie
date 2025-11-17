@@ -17,7 +17,7 @@ leptos_axum = { version = "0.8.6" }
 tracing = "0.1.41"
 tracing-subscriber = { version = "0.3.20", features = ["json", "env-filter", "local-time"] }
 tracing-wasm = "0.2.1"
-axum = "0.8.6"
+axum = "0.8.7"
 cfg-if = "1.0.4"
 console_error_panic_hook = "0.1.7"
 console_log = "1.0.0"
