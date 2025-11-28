@@ -14,7 +14,7 @@ leptos_meta = { version = "0.8.2" }
 leptos_router = { version = "0.8.5", features = ["nightly"] }
 leptos_axum = { version = "0.8.7" }
 
-tracing = "0.1.41"
+tracing = "0.1.43"
 tracing-subscriber = { version = "0.3.20", features = ["json", "env-filter", "local-time"] }
 tracing-wasm = "0.2.1"
 axum = "0.8.7"
