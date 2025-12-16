@@ -29,5 +29,5 @@ dotenvy.workspace = true
 serde_yaml.workspace = true
 futures.workspace = true
 serde_json.workspace = true
-reqwest = { version = "0.12.25", features = ["gzip", "json"] }
+reqwest = { version = "0.12.26", features = ["gzip", "json"] }
 humantime-serde.workspace = true
